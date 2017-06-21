@@ -5,15 +5,17 @@
   "main": "index.js",
   "dependencies": {
     "6to5ify": "^4.1.1",
+    "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
     "browserify": "^14.4.0",
-    "react-dom": "^15.6.1",
     "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "watchify": "^3.9.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "watchify -t 6to5ify ./src/app.js -o ./dist/bundle.js -v"
   },
   "repository": {
     "type": "git",
