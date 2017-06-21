@@ -21219,8 +21219,8 @@ var React = _interopRequire(require("react"));
 
 var ReactDOM = _interopRequire(require("react-dom"));
 
-var Main = _interopRequire(require("../components/main/main"));
+var Main = _interopRequire(require("../client/components/main/main"));
 
 ReactDOM.render(React.createElement(Main, null), document.querySelector("#root"));
 
-},{"../components/main/main":1,"react":184,"react-dom":32}]},{},[185]);
+},{"../client/components/main/main":1,"react":184,"react-dom":32}]},{},[185]);
