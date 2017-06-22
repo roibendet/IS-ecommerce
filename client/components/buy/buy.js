@@ -77,7 +77,7 @@ export default class Buy extends React.Component {
 
           <button className="sign-submit-btn" type="submit">continue</button>
         </form>
-        
+
       </div>
     )
   }
