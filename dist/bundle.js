@@ -80,8 +80,6 @@ var Buy = (function (_React$Component) {
         xhr.open("post", "http://localhost:3000/userData");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.addEventListener("load", function () {});
-
-        // console.info(userData);
         xhr.send(JSON.stringify(userData));
       },
       writable: true,
