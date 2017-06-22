@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Main from '../client/components/main/main';
+import Routes from '../client/components/Routes/routes';
 
 ReactDOM.render(
-  <Main/>, document.querySelector('#root'));
+  <Routes/>, document.querySelector('#root'));
