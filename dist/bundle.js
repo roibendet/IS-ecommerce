@@ -44,10 +44,14 @@ var _classCallCheck = function (instance, Constructor) { if (!(instance instance
 
 var React = _interopRequire(require("react"));
 
+var serverLocation = require("../../../server/serverLocation").serverLocation;
+
+
 var firstName = undefined;
 var lastName = undefined;
 var email = undefined;
 var country = undefined;
+var userData = {};
 
 
 var Buy = (function (_React$Component) {
@@ -63,14 +67,22 @@ var Buy = (function (_React$Component) {
     onSubmit: {
       value: function onSubmit(event) {
         event.preventDefault();
-        // console.info(firstName,lastName,email,country);
 
-        var userData = {
+        userData = {
           firstName: firstName,
           lastName: lastName,
           email: email,
           country: country
         };
+
+        // console.info(serverLocation);
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", "http://localhost:3000/userData");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.addEventListener("load", function () {});
+
+        // console.info(userData);
+        xhr.send(JSON.stringify(userData));
       },
       writable: true,
       configurable: true
@@ -179,7 +191,7 @@ var Buy = (function (_React$Component) {
 
 module.exports = Buy;
 
-},{"react":224}],3:[function(require,module,exports){
+},{"../../../server/serverLocation":228,"react":224}],3:[function(require,module,exports){
 
 },{}],4:[function(require,module,exports){
 "use strict";
@@ -24758,6 +24770,14 @@ module.exports = warning;
 },{"_process":41}],228:[function(require,module,exports){
 "use strict";
 
+var serverLocation = exports.serverLocation = location.origin.includes(":63342") ? "http://localhost:63342" : location.origin;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+},{}],229:[function(require,module,exports){
+"use strict";
+
 var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
 
 var React = _interopRequire(require("react"));
@@ -24768,4 +24788,4 @@ var Routes = _interopRequire(require("../client/components/Routes/routes"));
 
 ReactDOM.render(React.createElement(Routes, null), document.querySelector("#root"));
 
-},{"../client/components/Routes/routes":1,"react":224,"react-dom":48}]},{},[228]);
+},{"../client/components/Routes/routes":1,"react":224,"react-dom":48}]},{},[229]);

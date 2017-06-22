@@ -1,8 +1,11 @@
 import React from 'react';
+import {serverLocation} from '../../../server/serverLocation';
+
 let firstName;
 let lastName;
 let email;
 let country;
+let userData = {};
 
 
 export default class Buy extends React.Component {
@@ -14,14 +17,22 @@ export default class Buy extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    // console.info(firstName,lastName,email,country);
 
-    const userData = {
+    userData = {
       firstName,
       lastName,
       email,
       country
     };
+
+// console.info(serverLocation);
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', 'http://localhost:3000/userData');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener("load", () => {
+    }
+    );
+    xhr.send(JSON.stringify(userData));
 
   }
 

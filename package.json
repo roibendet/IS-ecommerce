@@ -10,6 +10,7 @@
     "body-parser": "^1.17.2",
     "browserify": "^14.4.0",
     "cors": "^2.8.3",
+    "level": "^1.7.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "watchify": "^3.9.0"
