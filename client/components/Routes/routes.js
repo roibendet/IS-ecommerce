@@ -10,7 +10,7 @@ export default function Routes() {
         {/*not done*/}
         {/*<Route exact path="/signin" component={Signin}/>*/}
         {/*not done*/}
-        <Route exact path="/is-ecommerce/buy" component={Buy}/>
+        <Route exact path="/buy" component={Buy}/>
         <Route path="/" component={ Root }/>
       </Switch>
     </BrowserRouter>

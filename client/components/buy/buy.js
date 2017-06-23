@@ -30,9 +30,13 @@ export default class Buy extends React.Component {
     xhr.open('post', 'http://localhost:3000/userData');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.addEventListener("load", () => {
+      console.info(this);
     }
     );
     xhr.send(JSON.stringify(userData));
+
+    // this.props.history.push('/is-ecommerce/thanks');
+    // this.props.history.push('/is-ecommerce/buy');
 
   }
 
@@ -56,6 +60,16 @@ export default class Buy extends React.Component {
       country = event.target.value;
     }
 
+  }
+  test() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('get', 'http://localhost:3000/backOffice');
+    // xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener("load", () => {
+        console.info(xhr.responseText);
+      }
+    );
+    xhr.send();
   }
 
 
@@ -88,6 +102,8 @@ export default class Buy extends React.Component {
 
           <button className="sign-submit-btn" type="submit">continue</button>
         </form>
+
+        <button className="sign-submit-btn" onClick={() => this.test()} type="submit">test</button>
 
       </div>
     )
