@@ -18,45 +18,46 @@ app.use(bodyParser.json());
 
 // DB settings
 const level = require('level');
-const sublevel = require('level-sublevel');
-const db = sublevel(level('./server/db', {valueEncoding: 'json'}));
-const customersdb = db.sublevel('customers');
+const db = level('./server/db', {valueEncoding: 'json'});
+
+
+
 
 
 app.post('/userData', function (req, res) {
 
   let customer = req.body.firstName + '-' + req.body.lastName;
-
-
   db.put(customer, req.body);
   db.get(customer, function (err, userData) {
-    console.info(userData);
+    console.info(err);
+    console.info('this',userData);
+    response.push(Object.assign({}, userData));
   });
   res.send('ok');
 });
 
 
+let response = [];
+
+
+// iterate keys in data base
+const valuestream = db.createValueStream();
+db.createReadStream({keys: false, values: true})
+  .on('data', function (data) {
+    response.push(Object.assign({}, data));
+  });
+
+
+
 app.get('/backOffice', function (req, res) {
-  let response = {};
-  let temp = [];
+
   // iterate keys in data base
   const keystream = db.createKeyStream();
   keystream.on('data', function (data) {
     // console.info('key = ', data);
   });
 
-// iterate keys in data base
-  const valuestream = db.createValueStream();
-  valuestream.on('data', function (data) {
-temp.push(data);
-     // console.info(temp);
-  });
-
-
-  response = {data: temp};
-console.info(response.data.length);
-  res.send(response);
-
+  res.send(JSON.stringify(response))
 });
 
 
