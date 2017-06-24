@@ -19,7 +19,6 @@
     "react": "^15.6.1",
     "react-css-modules": "^4.3.0",
     "react-dom": "^15.6.1",
-    "sassify": "^2.0.0",
     "watchify": "^3.9.0"
   },
   "devDependencies": {
@@ -30,9 +29,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "watchify -t browserify-css -t 6to5ify ./src/app.js -o ./dist/bundle.js -v",
+    "watch": "watchify -t browserify-css -t 6to5ify ./src/app.js -o ./dist/bundle.js -v",
     "build": "browserify -t 6to5ify -t browserify-css ./src/app.js  -o ./dist/bundle.js -v",
-    "start2": "npm run build && npm run server",
+    "start": "npm run build && npm run server",
     "server": "node server/server.js"
   },
   "repository": {
