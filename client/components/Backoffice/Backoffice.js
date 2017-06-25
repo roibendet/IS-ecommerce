@@ -1,4 +1,5 @@
 import React from 'react';
+import './Backoffice';
 
 export default class BackOffice extends React.Component {
   constructor() {
@@ -11,12 +12,12 @@ export default class BackOffice extends React.Component {
 
   componentDidMount() {
     this.listOfCustomersFromServer();
-  this.refreshData =  setInterval(() => this.listOfCustomersFromServer(), 2000);
+    this.refreshData = setInterval(() => this.listOfCustomersFromServer(), 2000);
   }
 
   componentWillUnmount() {
     clearInterval(this.refreshData);
-    this.setState({mode:'loading', customers: []})
+    this.setState({mode: 'loading', customers: []})
   }
 
   listOfCustomersFromServer() {
@@ -33,7 +34,7 @@ export default class BackOffice extends React.Component {
         this.setState({customers: customers, mode: 'loaded'});
       }
     });
-        xhr.addEventListener('error', () => {
+    xhr.addEventListener('error', () => {
 
       this.setState({mode: 'error'})
     });

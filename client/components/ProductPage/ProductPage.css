@@ -1,0 +1,13 @@
+.text-container {
+  width: 100%;
+  align-content: center;
+  margin: 4px 0 0 0;
+  background: none;
+  border: 1px solid #cef2e0;
+}
+
+.item-description-text {
+  background-color: #F5FFFA;
+  padding: 2px 5px;
+  line-height: 1.6;
+}

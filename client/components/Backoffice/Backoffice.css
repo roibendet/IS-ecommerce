@@ -1,0 +1,7 @@
+.row-number {
+  font-weight: bold;
+}
+
+.first-last-name-capitalize::first-letter {
+  text-transform: capitalize;
+}

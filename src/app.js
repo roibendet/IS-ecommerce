@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-const normalize = require('normalize');
-import './bootstrap.css';
-import './app.css';
-import Routes from '../client/components/routes/Routes';
+import '../client/assets/Styles/Bootstrap.css';
+import '../client/assets/Styles/_General.css'
+import Routes from '../client/components/Routes/Routes';
 
 ReactDOM.render(
   <Routes/>, document.querySelector('#root'));

@@ -1,14 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-var countries = require('country-list')();
-
-
-let firstName;
-let lastName;
-let email;
-let country;
-let userData = {};
-
+import './Buying.css';
+import countryList from 'country-list';
 
 export default class Buy extends React.Component {
   constructor() {
@@ -16,21 +9,22 @@ export default class Buy extends React.Component {
     this.state = {
       paid: false
     };
-    this.onSubmit = this.onSubmit.bind(this)
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeHandler = this.onChangeHandler.bind(this);
+
+    this.userData = {
+      firstName: null,
+      lastName: null,
+      email: null,
+      country: null
+    };
   }
 
-
   onSubmit(event) {
-
     event.preventDefault();
 
-    userData = {
-      firstName,
-      lastName,
-      email,
-      country
-    };
     const xhr = new XMLHttpRequest();
+
     xhr.open('post', 'http://localhost:3000/userData');
     xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -38,19 +32,11 @@ export default class Buy extends React.Component {
       this.setState({paid: true}, console.info(xhr.responseText))
     });
 
-    xhr.send(JSON.stringify(userData));
-
-
-  }
-
-
-
-
-  componentDidMount() {
-    // this.setState({paid: true});
+    xhr.send(JSON.stringify(this.userData));
   }
 
   getListOfCountries() {
+    const countries = countryList();
     const listOfCountries = countries.getNames();
 
     return listOfCountries.map((country, i) => {
@@ -58,23 +44,22 @@ export default class Buy extends React.Component {
     })
   }
 
-
   onChangeHandler(event) {
 
     if (event.target.id === 'inputFirstName3') {
-      firstName = event.target.value;
+      this.userData.firstName = event.target.value;
     }
 
     if (event.target.id === 'inputLastName3') {
-      lastName = event.target.value;
+      this.userData.lastName = event.target.value;
     }
 
     if (event.target.id === 'inputEmail3') {
-      email = event.target.value;
+      this.userData.email = event.target.value;
     }
 
     if (event.target.id === 'inputCountry3') {
-      country = event.target.value;
+      this.userData.country = event.target.value;
     }
   }
 
@@ -83,11 +68,12 @@ export default class Buy extends React.Component {
 
     switch (this.state.paid) {
       case true:
-        return <div className="my-container"><h1>Thank you for your purchase</h1>
+        return <div className="my-page"><div className="my-container"><h1>Thank you for your purchase</h1>
+          <p>Receipt was sent to your e-mail</p>
           <Link to="/backofficepage"
                 className="btn btn-success backoffice-btn">Back office
           </Link>
-        </div>;
+        </div></div>;
 
       case false:
         return (<div className="my-page">
@@ -182,7 +168,7 @@ export default class Buy extends React.Component {
                 <div className="col-sm-offset-2 col-sm-10">
 
                   <button type="submit"
-                          className="btn btn-primary">Buy it now
+                          className="btn btn-primary my-btn">Buy it now
                   </button>
 
                 </div>
