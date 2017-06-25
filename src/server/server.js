@@ -73,4 +73,4 @@ app.use('/_', express.static(path.resolve(__dirname, '../dist/_')));
 app.get('/**', (req, res) => res.sendFile(path.resolve(__dirname, '../../index.html')));
 
 app.listen(port);
-console.log('open in the browser at http://localhost:3000 ' + port);
+console.log('open in the browser at http://localhost:3000');
