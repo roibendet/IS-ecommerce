@@ -2,3 +2,11 @@
   font-weight: 100;
   text-align: left !important;
 }
+
+.my-form {
+padding-top: 5vw;
+padding-bottom: 5vw;
+}
+.form-title {
+  font-size: 3rem;
+}

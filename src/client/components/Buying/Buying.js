@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import './Buying.css';
+
 import countryList from 'country-list';
 
 export default class Buy extends React.Component {
@@ -68,24 +69,28 @@ export default class Buy extends React.Component {
 
     switch (this.state.paid) {
       case true:
-        return <div className="my-page"><div className="my-container"><h1>Thank you for your purchase</h1>
-          <p>Receipt was sent to your e-mail</p>
-          <Link to="/backofficepage"
-                className="btn btn-success backoffice-btn">Back office
-          </Link>
-        </div></div>;
+        return <div className="my-page">
+
+          <div className="my-container"><h1 className="backoffice-title">Thank you for your purchase</h1>
+
+            <p>Receipt was sent to your e-mail</p>
+
+            <Link to="/backofficepage"
+                  className="btn btn-success backoffice-btn">Back office
+            </Link>
+
+          </div>
+
+        </div>;
 
       case false:
         return (<div className="my-page">
 
-
-          <h1>Buying Page</h1>
-
           <div className="my-container">
 
-            <form className="form-horizontal" onSubmit={this.onSubmit}>
+            <form className="form-horizontal my-form" onSubmit={this.onSubmit}>
 
-              <h4>Personal Details</h4>
+              <h1 className="form-title">Personal Details</h1>
 
               <div className="form-group">
 
@@ -140,7 +145,6 @@ export default class Buy extends React.Component {
 
               </div>
 
-
               <div className="form-group">
 
                 <label htmlFor="inputCountry3"
@@ -162,13 +166,12 @@ export default class Buy extends React.Component {
 
               </div>
 
-
               <div className="form-group">
 
                 <div className="col-sm-offset-2 col-sm-10">
 
                   <button type="submit"
-                          className="btn btn-primary my-btn">Buy it now
+                          className="btn btn-default my-btn buy-it">Buy it now
                   </button>
 
                 </div>

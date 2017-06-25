@@ -1,10 +1,8 @@
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 const fs = require('fs');
 const bodyParser = require('body-parser');
-// const os = require('os');
 let response = [];
 
 // DB settings
@@ -12,14 +10,9 @@ const level = require('level');
 const db = level('./src/server/db', {valueEncoding: 'json'});
 
 // Email settings
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
-app.use(cors({
-  origin: (origin, callback) => {
-    callback(null, true)
-  },
-  credentials: true
-}));
+
 app.use(bodyParser.json());
 
 app.post('/userData', function (req, res) {
@@ -30,7 +23,7 @@ app.post('/userData', function (req, res) {
     console.info('this', userData);
   });
 
-  var transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: 'ironsourceroibendet@gmail.com',
@@ -38,7 +31,7 @@ app.post('/userData', function (req, res) {
     }
   });
 
-  var mailOptions = {
+  const mailOptions = {
     from: 'Iron Source Test',
     to: `${req.body.email}`,
     subject: `${req.body.firstName.toUpperCase()} ${req.body.lastName.toUpperCase()}  Thank you for your purchase`,

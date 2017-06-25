@@ -1,5 +1,6 @@
 import React from 'react';
-import './Backoffice';
+// import './Backoffice';
+import './Backoffice.css'
 
 export default class BackOffice extends React.Component {
   constructor() {
@@ -58,16 +59,17 @@ export default class BackOffice extends React.Component {
 
       case 'noData':
         return <div className="my-page">
-          <div className="my-container"><h1>No data in DB</h1></div>
+          <div className="my-container"><h1 className="backoffice-title">No data in DB</h1></div>
         </div>;
 
       case 'loading':
         return <div className="my-page">
-          <div className="my-container"><h1>Loading DB</h1></div>
+          <div className="my-container"><h1 className="backoffice-title">Loading DB</h1></div>
         </div>;
+
       case 'error':
         return <div className="my-page">
-          <div className="my-container"><h1>Error, try again</h1></div>
+          <div className="my-container"><h1 className="backoffice-title">Error, try again</h1></div>
         </div>;
 
       case 'loaded':
@@ -78,35 +80,32 @@ export default class BackOffice extends React.Component {
 
             <div className="my-container">
 
-              <h1>Back Office</h1>
+              <h1 className="backoffice-title">Back Office</h1>
 
-              <div>
+              <table className="table">
 
-                <table className="table">
+                <tbody>
 
-                  <tbody>
+                <tr>
 
-                  <tr>
+                  <th>#</th>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Country</th>
 
-                    <th>#</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>Country</th>
+                </tr>
 
-                  </tr>
+                {this.listOfCustomersCreator()}
 
-                  {this.listOfCustomersCreator()}
+                </tbody>
 
-                  </tbody>
-
-                </table>
-
-              </div>
+              </table>
 
             </div>
 
           </div>
+
         )
     }
   }

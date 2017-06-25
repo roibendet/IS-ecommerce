@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Root from '../Root/root';
+import Root from '../Root/Root';
 import Buying from '../Buying/Buying';
 import BackOffice from '../Backoffice/Backoffice';
 

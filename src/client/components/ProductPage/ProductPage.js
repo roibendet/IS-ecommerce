@@ -12,13 +12,15 @@ export default class ProductPage extends React.Component {
     const Products = this.props.data;
     return Products.map((product, i) => {
       return <div key={i}>
-        <h1>{product.name}</h1>
+
+        <h1 className="product-title">{product.name}</h1>
+
         <div className="text-container">
-          < p
-            className="item-description-text"> {product.descriptionIntro
-          }</p>
+
           <p className="item-description-text">{product.descriptionOfProduct}</p>
+
         </div>
+
       </div>
     })
   }
@@ -27,12 +29,12 @@ export default class ProductPage extends React.Component {
     return (
       <div className="my-page">
 
-        <div className="my-container">
+        <div className="my-container my-pull-right">
 
           {this.listOfProductsCreator()}
 
           <Link to="/buying"
-                className="btn btn-primary my-btn">Proceed to payment
+                className="btn btn-default my-btn">BUY ON <b>$299.95</b>
           </Link>
 
           <Link to="/backofficepage"
@@ -40,6 +42,8 @@ export default class ProductPage extends React.Component {
           </Link>
 
         </div>
+
+        <div className="image-wrapper"/>
 
       </div>
     )
