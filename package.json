@@ -33,7 +33,7 @@
     "watch": "watchify -t browserify-css -t 6to5ify ./src/app.js -o ./dist/bundle.js -v",
     "build": "browserify -t 6to5ify -t browserify-css ./src/app.js  -o ./dist/bundle.js -v",
     "start": "npm run build && npm run server",
-    "server": "node server/server.js"
+    "server": "node src/server/server.js"
   },
   "repository": {
     "type": "git",

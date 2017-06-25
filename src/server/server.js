@@ -9,7 +9,7 @@ let response = [];
 
 // DB settings
 const level = require('level');
-const db = level('./server/db', {valueEncoding: 'json'});
+const db = level('./src/server/db', {valueEncoding: 'json'});
 
 // Email settings
 var nodemailer = require('nodemailer');
@@ -75,9 +75,9 @@ app.get('/backOffice', function (req, res) {
 
 const path = require('path');
 
-app.get('/dist/bundle.js', (req, res) => res.sendFile(path.resolve(__dirname, '../dist/bundle.js')));
+app.get('/dist/bundle.js', (req, res) => res.sendFile(path.resolve(__dirname, '../../dist/bundle.js')));
 app.use('/_', express.static(path.resolve(__dirname, '../dist/_')));
-app.get('/**', (req, res) => res.sendFile(path.resolve(__dirname, '../index.html')));
+app.get('/**', (req, res) => res.sendFile(path.resolve(__dirname, '../../index.html')));
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
