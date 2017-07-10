@@ -1,73 +1,13 @@
 html,
 body {
-  width: 100vw;
-  height: 100%;
-  position: relative;
+position: relative;
   font-weight: 100;
 }
 
-html {
-  padding: 5%;
-  overflow: hidden;
-}
-
-#root {
-  background: rgb(247, 247, 247);
-  background: -moz-linear-gradient(90deg, rgb(247, 247, 247) 20%, rgb(90, 90, 90) 91%);
-  background: -webkit-linear-gradient(90deg, rgb(247, 247, 247) 20%, rgb(90, 90, 90) 91%);
-  background: -o-linear-gradient(90deg, rgb(247, 247, 247) 20%, rgb(90, 90, 90) 91%);
-  background: -ms-linear-gradient(90deg, rgb(247, 247, 247) 20%, rgb(90, 90, 90) 91%);
-  background: linear-gradient(180deg, rgb(247, 247, 247) 20%, rgb(90, 90, 90) 91%);
-  width: 90%;
-  height: 100%;
-}
-
-.my-page {
-  margin: 0 auto;
-}
-
-.my-page h1,
-.my-page p {
-  text-align: left;
-}
 
 
-.my-container {
-  margin: 0 auto;
-  width: 50%;
-}
 
-.my-pull-right {
-  float: right;
-  margin: 0 2vw 0 auto;
-}
 
-.backoffice-btn {
-  opacity: 0.9;
-  position: absolute;
-  right: 10%;
-  bottom: 0;
-}
-
-.backoffice-btn:hover {
-  opacity: 1;
-}
-
-.my-btn {
-  width: 40%;
-  margin-top: -1vw;
-  border:0;
-  margin-left: 0.3vw;
-}
-.buy-it {
-  margin-left: 0;
-  margin-top: 0.2vh;
-}
-
-.my-btn:hover {
-  color: white;
-  background-color: #181818;
-}
 
 
 

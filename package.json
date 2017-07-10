@@ -1,5 +1,5 @@
 {
-  "name": "is-ecommerce",
+  "name": "Bookee-Test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,24 +7,21 @@
     "6to5ify": "^4.1.1",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
-    "body-parser": "^1.17.2",
     "browserify": "^14.4.0",
-    "country-list": "^1.1.0",
-    "level": "^1.7.0",
-    "level-sublevel": "^6.6.1",
-    "leveldown": "^1.7.2",
-    "levelup": "^1.3.8",
+    "bufferutil": "^3.0.2",
     "nodemailer": "^4.0.1",
     "normalize": "^0.3.1",
     "react": "^15.6.1",
     "react-css-modules": "^4.3.0",
     "react-dom": "^15.6.1",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3",
+    "utf-8-validate": "^3.0.3",
     "watchify": "^3.9.0"
   },
   "devDependencies": {
     "browserify-css": "^0.10.1",
     "express": "^4.15.3",
-    "fs": "0.0.1-security",
     "react-router-dom": "^4.1.1"
   },
   "scripts": {
