@@ -1,4 +1,3 @@
-@import '../../assets/styles/_colors';
 .auth {
   margin: 0 auto;
   padding-top: 30px;
@@ -123,16 +122,18 @@
   display: inline;
 }
 
-.sign-link {
+.sign-btn {
   margin-left: 20px;
+  background-color: transparent;
+  border: none;
 }
 
-.sign-link:link,
-.sign-link:visited,
-.sign-link:hover,
-.sign-link:active,
-.sign-link:focus,
-.sign-link {
+.sign-btn:link,
+.sign-btn:visited,
+.sign-btn:hover,
+.sign-btn:active,
+.sign-btn:focus,
+.sign-btn {
   color: #2196F3;
   text-decoration: none;
 }

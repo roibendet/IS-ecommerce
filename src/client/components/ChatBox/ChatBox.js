@@ -1,16 +1,14 @@
 import React from 'react';
 import io from 'socket.io-client'
-
-
 import '../../assets/Styles/Bootstrap.css';
 import './ChatBox.css';
 
-let counter = 0;
 export default class ChatBox extends React.Component {
   constructor() {
     super();
     this.state = {
-      messages: []
+      messages: [],
+      users: []
     };
 
     this.userData = {
@@ -18,7 +16,6 @@ export default class ChatBox extends React.Component {
       userMsg: null,
 
     };
-    // let socket = io(`http://localhost:3000`);
     this.socket = io.connect();
     this.onSubmit = this.onSubmit.bind(this);
     this.msgsInChatBuilder = this.msgsInChatBuilder.bind(this)
@@ -26,42 +23,57 @@ export default class ChatBox extends React.Component {
 
   onSubmit(event) {
     event.preventDefault();
-    // console.log(event.target[0].value);
-    let message = event.target[0].value;
-    this.socket.emit('send message', this.msg.value);
-
+    this.userData.userMsg = event.target[0].value;
+    this.userData.userID = this.props.username;
+    this.socket.emit('send message', this.userData);
     this.msg.value = '';
 
+  }
+
+  componentDidMount() {
+    const that = this;
+    this.socket.emit('new user', this.props.username, function (data) {
+      console.info(data);
+
+    });
+
+    this.socket.on('get users', function (data) {
+      console.info('all users',data);
+      that.setState({users: data});
+
+    })
 
   }
-  componentDidMount(){
 
-
-  }
 
   msgsInChatBuilder() {
     const that = this;
     this.socket.on('new message', function (data) {
-
       const newState = that.state.messages;
 
-      if (that.state.messages[that.state.messages.length -1] === data.msg) {
-return
+      if (that.state.messages.length === 0) {
+        newState.push(data);
+        return that.setState({messages: newState});
       }
-      else {
-        newState.push(data.msg);
-        that.setState({messages: newState});
+
+      if (that.state.messages.length > 0) {
+        if (that.state.messages[that.state.messages.length - 1].data.userMsg === data.data.userMsg) {
+          return;
+
+        }
+        else {
+          newState.push(data);
+          that.setState({messages: newState});
+        }
 
       }
 
 
     });
 
-
-    console.info(this.state);
-
     return this.state.messages.map((msg, i) => {
-      return <li key={i}>{msg}</li>
+      return <li key={i} className="msg">
+        <strong>{this.state.messages[i].data.userID}:</strong>{this.state.messages[i].data.userMsg}</li>
     })
   }
 
@@ -77,7 +89,7 @@ return
 
             <div className="well">
               <h3>online users</h3>
-              <ul className="list-group" id="users">x</ul>
+              <ul className="list-group" id="users">{this.state.users}</ul>
             </div>
           </div>
 

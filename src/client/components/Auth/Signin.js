@@ -1,58 +1,45 @@
-import './auth.scss';
-import React from 'react'
-let valueOfEmail;
-export default class Signin extends React.Component {
-  constructor(props) {
+import './auth.css';
+import React from 'react';
+
+
+export default class SignIn extends React.Component {
+  constructor() {
     super();
 
+    this.user = {
+      username: null,
+      password: null
+    };
 
-    this.notValid =  this.notValid.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
 
+  onSubmit(e) {
+    e.preventDefault();
+    this.user = {
+      username: e.target[0].value,
+      password: e.target[1].value
+    };
 
-  onSubmit(event) {
-    event.preventDefault();
-    // console.info('fuck');
-    if (valueOfEmail.includes('@')){
-      console.info('valid');
-    }
 
-    if (!valueOfEmail.includes('@')) {
-      console.info('notvalid');
-console.info(this.elm);
-    }
+    const xhr = new XMLHttpRequest();
 
+
+    xhr.open('post', `http://localhost:3000/SignInWithThisUser`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.addEventListener("load", () => {
+      this.props.singInHandler(xhr.responseText, this.user.username);
+      // this.props.signModeHandler();
+
+    });
+    xhr.send(JSON.stringify(this.user));
 
   }
 
-  onChange(event) {
-
-    valueOfEmail = event.target.value;
-    console.info(valueOfEmail);
+  componentDidMount() {
   }
-
-
-  empty() {
-    this.signUserNameTitle.className = "sign-username title-error-empty";
-    this.signUserNameInput.className = "sign-username-input input-error";
-  }
-
-  reset() {
-    this.signUserNameTitle.className = "sign-username";
-    this.signUserNameInput.className = "sign-username-input";
-  }
-
-  noUser() {
-    this.signUserNameTitle.className = "sign-username title-error-no-user";
-    this.signUserNameInput.className = "sign-username-input input-error";
-  }
-
-  notValid() {
-    this.signUserNameTitle.className = "sign-username title-error-not-valid";
-    this.signUserNameInput.className = "sign-username-input input-error";
-  }
-
 
 
   render() {
@@ -61,32 +48,28 @@ console.info(this.elm);
     return (
 
       <div className="auth">
-        <i className="fa fa-mixcloud signup-logo" />
-        <h2 className="sign-title">SongCloud</h2>
+        <i className="fa fa-mixcloud signup-logo"/>
+        <h2 className="sign-title">Bookee Test</h2>
+
 
         <form className="sign-form" onSubmit={this.onSubmit}>
-          <h4>Sign In</h4>
+          <h4 className="sign-action-title">Sign In</h4>
 
-          <p ref={(elm) => this.signUserNameTitle = elm} className="sign-username">Email</p>
-          <input ref={(elm) => this.signUserNameInput = elm} className="sign-username-input" type="text" onChange={this.onChange} placeholder="E-mail"/>
+          <label htmlFor="username-input" className="sign-username">Email</label>
+          <input id="username-input" className="sign-username-input" type="email" placeholder="E-mail"/>
 
-          <p className="sign-password">Password</p>
-          <input className="sign-username-input" type="password" placeholder="Password"/>
+          <label htmlFor="password-input" className="sign-password">Password</label>
+          <input id="password-input" className="sign-username-input" type="password" placeholder="Password"/>
 
-          <button className="sign-submit-btn" type="submit">continue</button>
+          <button className="sign-submit-btn" type="submit">Submit</button>
         </form>
 
 
         <div>
           <span className="sign-question">Don't have an account yet ?</span>
-          <a className="sign-link" href="#">Create Account</a>
+          <button className="sign-btn" onClick={() => this.props.signModeHandler()}>Create Account</button>
         </div>
-        <h2>username Errors</h2>
-        <button onClick={() => this.reset()}>username reset</button>
-        <br/>
-        <button onClick={() => this.empty()}>username error empty value</button>
-        <button onClick={() => this.noUser()}>username error noUser value</button>
-        <button onClick={() => this.notValid()}>username error notValid value</button>
+
 
       </div>
     )

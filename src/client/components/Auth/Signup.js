@@ -1,27 +1,64 @@
-export default function Signup() {
-  return (
-    <div className="auth">
-      <i className="fa fa-mixcloud signup-logo" />
-      <h2 className="sign-title">SongCloud</h2>
-
-      <form className="sign-form">
-        <h4 className="sign-action-title">Create account</h4>
-
-        <label htmlFor="username-input" className="sign-username">Email</label>
-        <input id="username-input" className="sign-username-input" type="text" placeholder="E-mail"/>
+import React from 'react';
+import './auth.css';
 
 
-        <label htmlFor="password-input" className="sign-password">Password</label>
-        <input id="password-input" className="sign-username-input" type="password" placeholder="Password"/>
+export default class SignUp extends React.Component {
+  constructor() {
+    super();
+    this.newUser = {
+      username: null,
+      password: null
 
-        <button className="sign-submit-btn" type="submit">continue</button>
-      </form>
+    };
+    this.onSubmit = this.onSubmit.bind(this)
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    this.newUser = {
+      username: e.target[0].value,
+      password: e.target[1].value
+    };
 
 
-      <div>
-        <span className="sign-question">Already have an account ?</span>
-        <a className="sign-link" href="#">Sign in</a>
+    const xhr = new XMLHttpRequest();
+    xhr.open('post', `http://localhost:3000/CreateNewUser`);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.addEventListener("load", () => {
+      this.props.singInHandler('signin', this.newUser.username);
+      this.props.signModeHandler();
+    });
+    xhr.send(JSON.stringify(this.newUser));
+  }
+  componentDidMount() {
+  }
+
+  render() {
+    return (
+      <div className="auth">
+        <i className="fa fa-mixcloud signup-logo"/>
+        <h2 className="sign-title">Bookee Test</h2>
+
+        <form className="sign-form" onSubmit={this.onSubmit}>
+          <h4 className="sign-action-title">Create account</h4>
+
+          <label htmlFor="username-input" className="sign-username">Email</label>
+          <input id="username-input" className="sign-username-input" type="email" placeholder="E-mail"/>
+
+
+          <label htmlFor="password-input" className="sign-password">Password</label>
+          <input id="password-input" className="sign-username-input" type="password" placeholder="Password"/>
+
+          <button className="sign-submit-btn" type="submit">Submit</button>
+        </form>
+
+
+        <div>
+          <span className="sign-question">Already have an account ?</span>
+          <button className="sign-btn" onClick={() => this.props.signModeHandler()} >Sign in</button>
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
